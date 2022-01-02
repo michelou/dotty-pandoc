@@ -44,4 +44,6 @@ jobs:
 
       - name: Generate PDF reference documentation
         run: |
+          which pandoc
+          pwd
           echo ./pandoc/md2pdf reference
