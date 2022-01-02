@@ -18,8 +18,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up Pandoc
-        uses: docker://pandoc/latex:latest
+      #- name: Set up Pandoc
+      #  uses: docker://pandoc/latex:latest
 
       - name: Check environment setup
         run: |
@@ -30,6 +30,8 @@ jobs:
   build:
     needs: setenv
     runs-on: ubuntu-latest
+    container:
+      image: pandoc/latex:latest
     #if: "(    github.event_name == 'pull_request'
     #       && !contains(github.event.pull_request.body, '[skip ci]')
     #       && !contains(github.event.pull_request.body, '[skip docs]')
