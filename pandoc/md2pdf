@@ -67,15 +67,15 @@ fi
 
 LATEX=lualatex$EXT
 ## We only consider commands from the installation directory defined by TEXLIVE_HOME
-## LATEX_CMD="$(command -v $LATEX)"
-## if ! [ -x "$LATEX_CMD" ]; then
+LATEX_CMD="$(command -v $LATEX)"
+if ! [ -x "$LATEX_CMD" ]; then
     case $OS in
         Win) LATEX_CMD=$TEXLIVE_HOME/bin/win32/$LATEX ;;
         Mac) LATEX_CMD=$TEXLIVE_HOME/bin/x86_64-darwin/$LATEX ;;
         *)   LATEX_CMD=$TEXLIVE_HOME/bin/x86_64-linux/$LATEX
     esac
     [ -x "$LATEX_CMD" ] || { echo "$LATEX executable not found" 1>&2; exit 1; }
-## fi
+fi
 
 SOURCE_DIR=$(dirname "$PROG_HOME")/docs/docs
 DATA_DIR=$PROG_HOME/data
