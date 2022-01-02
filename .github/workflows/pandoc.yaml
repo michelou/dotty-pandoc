@@ -33,7 +33,7 @@ jobs:
 
       - name: Generate PDF reference documentation
         run: |
-          which pandoc
-          ls -al $(pwd)
-          chmod +x ./pandoc/md2pdf
-          ./pandoc/md2pdf reference
+          pandoc --version | grep ^pandoc
+          find . -name md2pdf
+          echo chmod +x ./pandoc/md2pdf
+          echo ./pandoc/md2pdf reference
