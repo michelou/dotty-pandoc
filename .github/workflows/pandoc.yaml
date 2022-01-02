@@ -25,8 +25,7 @@ jobs:
         run: |
           docker version --format '{{.Server.Version}}'
           docker run pandoc/latex:latest --version | grep ^pandoc
-          docker ps
-          #docker exec env | grep DOCKER
+          docker run -it env | grep DOCKER
 
   build:
     needs: setenv
