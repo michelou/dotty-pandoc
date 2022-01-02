@@ -12,22 +12,11 @@ jobs:
       - name: Print environment
         run: |
           env | grep HOME
-
-  setenv:
-    needs: printenv
-    runs-on: ubuntu-latest
-
-    steps:
-      #- name: Set up Pandoc
-      #  uses: docker://pandoc/latex:latest
-
-      - name: Check environment setup
-        run: |
           docker version --format '{{.Server.Version}}'
           docker run pandoc/latex:latest --version | grep ^pandoc
 
   build:
-    needs: setenv
+    needs: printenv
     runs-on: ubuntu-latest
     container:
       image: pandoc/latex:latest
@@ -46,4 +35,4 @@ jobs:
         run: |
           which pandoc
           pwd
-          echo ./pandoc/md2pdf reference
+          ./pandoc/md2pdf reference
