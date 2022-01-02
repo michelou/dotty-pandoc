@@ -283,7 +283,7 @@ abstract: |
 ../out/pandoc/src_managed/reference/other-new-features/type-test.md
 ```
 
-## Experimental Definitions [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/other-new-features/experimental-defs.html) {#type-test}
+## Experimental Definitions [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/other-new-features/experimental-defs.html) {#experimental-defs}
 ```{.include shift-heading-level-by=1}
 ../out/pandoc/src_managed/reference/other-new-features/experimental-defs.md
 ```
@@ -293,7 +293,7 @@ abstract: |
 \newpage
 # Other Changed Features [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/changed-features.html) {#other-changed-features}
 
-## Numeric Literals [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/changed-features/numeric-literals.html) {#numeric-literals}
+## Numeric Literals [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/changed-features/numeric-literals.html) {#numeric-literals-moved}
 ```{.include shift-heading-level-by=1}
 ../out/pandoc/src_managed/reference/changed-features/numeric-literals.md
 ```
@@ -313,7 +313,7 @@ abstract: |
 ../out/pandoc/src_managed/reference/changed-features/wildcards.md
 ```
 
-## Imports [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/changed-features/imports.html) {#wildcards}
+## Imports [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/changed-features/imports.html) {#imports}
 ```{.include shift-heading-level-by=1}
 ../out/pandoc/src_managed/reference/changed-features/imports.md
 ```
@@ -493,7 +493,7 @@ abstract: |
 ../out/pandoc/src_managed/reference/experimental/named-typeargs.md
 ```
 
-## Named Numeric Literals [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/experimental/numeric-literals.html) {#numeric-literals}
+## Numeric Literals [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/experimental/numeric-literals.html) {#numeric-literals}
 ```{.include shift-heading-level-by=1}
 ../out/pandoc/src_managed/reference/experimental/numeric-literals.md
 ```
