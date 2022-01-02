@@ -36,4 +36,4 @@ jobs:
           pandoc --version | grep ^pandoc
           find . -name md2pdf
           chmod u+x ./pandoc/md2pdf
-          echo ./pandoc/md2pdf reference
+          ./pandoc/md2pdf reference
