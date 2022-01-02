@@ -34,6 +34,6 @@ jobs:
       - name: Generate PDF reference documentation
         run: |
           which pandoc
-          dir $(pwd)
+          ls -al $(pwd)
           chmod +x ./pandoc/md2pdf
           ./pandoc/md2pdf reference
