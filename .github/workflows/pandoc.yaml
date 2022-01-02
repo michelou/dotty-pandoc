@@ -2,10 +2,19 @@ name: Pandoc
 
 on:
   push:
-    branch: master
+    branches: [master]
 
 jobs:
+  printenv:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Print environment
+      run: |
+        env | grep HOME
+
   build:
+    needs: printenv
     runs-on: ubuntu-latest
     #if: "(    github.event_name == 'pull_request'
     #       && !contains(github.event.pull_request.body, '[skip ci]')
@@ -15,9 +24,9 @@ jobs:
     #     || contains(github.event.ref, 'master')"
 
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v2
+    - name: Git Checkout
+      uses: actions/checkout@v2
 
-      - name: Generate PDF reference documentation
-        uses: docker://pandoc/latex:latest
-        run: ./pandoc/md2pdf reference
+    - name: Generate PDF reference documentation
+      uses: docker://pandoc/latex:latest
+      run: ./pandoc/md2pdf reference
