@@ -2,7 +2,7 @@
 layout: doc-page
 title: "Scala 3 Reference"
 titlegraphic: ../out/pandoc/images/scala-spiral.png
-author: Martin Odersky and al.
+author: Martin Odersky et al.
 institute: EPFL, Switzerland
 abstract-title: WILL_BE_IGNORED
 abstract: |

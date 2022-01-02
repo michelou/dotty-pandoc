@@ -2,28 +2,28 @@ name: Pandoc
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
   printenv:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print environment
-      run: |
-        env | grep HOME
+      - name: Print environment
+        run: |
+          env | grep HOME
 
   setenv:
     needs: printenv
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up Pandoc
-      uses: docker://pandoc/latex:latest
+      - name: Set up Pandoc
+        uses: docker://pandoc/latex:latest
 
-    - name: Check environment setup
-      run: |
-        pandoc --version | grep ^pandoc
+      - name: Check environment setup
+        run: |
+          pandoc --version | grep ^pandoc
 
   build:
     needs: setenv
@@ -36,8 +36,8 @@ jobs:
     #     || contains(github.event.ref, 'master')"
 
     steps:
-    - name: Git Checkout
-      uses: actions/checkout@v2
+      - name: Git Checkout
+        uses: actions/checkout@v2
 
-    - name: Generate PDF reference documentation
-      run: ./pandoc/md2pdf reference
+      - name: Generate PDF reference documentation
+        run: ./pandoc/md2pdf reference
