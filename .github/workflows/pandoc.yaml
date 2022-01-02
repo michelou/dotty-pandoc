@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Print environment
         run: |
+          env | grep GIT
           env | grep HOME
           docker version --format '{{.Server.Version}}'
           docker run pandoc/latex:latest --version | grep ^pandoc
@@ -36,4 +37,4 @@ jobs:
           pandoc --version | grep ^pandoc
           find . -name md2pdf
           chmod u+x ./pandoc/md2pdf
-          ./pandoc/md2pdf reference
+          DEBUG=1 & ./pandoc/md2pdf reference
