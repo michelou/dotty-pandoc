@@ -50,6 +50,8 @@ download() {
 }
 
 install() {
+    [ -d "$TEXMF_LOCAL_DIR" ] || mkdir -p "$TEXMF_LOCAL_DIR"
+
     local status=0
     for f in $(ls $DOWNLOADS_DIR/*.tar.xz); do
         local xz_file=$f
