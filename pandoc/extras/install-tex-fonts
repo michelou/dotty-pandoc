@@ -6,7 +6,8 @@
 ## Subroutines
 
 getHome() {
-    local source="${BASH_SOURCE[0]}"
+    # local source="${BASH_SOURCE[0]}"
+    local source="$0"
     while [ -h "$source" ] ; do
         local linked="$(readlink "$source")"
         local dir="$( cd -P $(dirname "$source") && cd -P $(dirname "$linked") && pwd )"
