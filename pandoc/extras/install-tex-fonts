@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 ## DEBUG=1
 
@@ -29,8 +29,8 @@ getOS() {
 
 download() {
     local status=0
-    ## Update path part '2021/01/20' to retrieve newer archive files
-    local archive_url=https://texlive.info/tlnet-archive/2021/01/20/tlnet/archive
+    ## Update path part '2022/01/04' to retrieve newer archive files
+    local archive_url=https://texlive.info/tlnet-archive/2022/01/04/tlnet/archive
     local archive_files="dejavu environ fancyvrb fontspec gnu-freefont"
     archive_files="$archive_files l3backend l3kernel l3packages pgf"
     archive_files="$archive_files tcolorbox trimspaces unicode-math xcolor"
