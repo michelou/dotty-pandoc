@@ -34,6 +34,7 @@ jobs:
 
       - name: Print Pandoc environment
         run: |
+          env | grep TEX
           pandoc --version | grep ^pandoc
 
       - name: Install additional TeX fonts

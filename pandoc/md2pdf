@@ -67,16 +67,13 @@ if ! [ -x "$PANDOC_CMD" ]; then
 fi
 
 LATEX=lualatex$EXT
-## We only consider commands from the installation directory defined by TEXLIVE_HOME
-LATEX_CMD="$(command -v $LATEX)"
-if ! [ -x "$LATEX_CMD" ]; then
-    case $OS in
-        Win) LATEX_CMD=$TEXLIVE_HOME/bin/win32/$LATEX ;;
-        Mac) LATEX_CMD=$TEXLIVE_HOME/bin/x86_64-darwin/$LATEX ;;
-        *)   LATEX_CMD=$TEXLIVE_HOME/bin/x86_64-linux/$LATEX
-    esac
-    [ -x "$LATEX_CMD" ] || { echo "$LATEX executable not found" 1>&2; exit 1; }
+## We give priority to commands from the installation directory defined by TEXLIVE_HOME
+if [ -d "$TEXLIVE_HOME" ]; then
+    LATEX_CMD="$(find -v $TEXLIVE_HOME $LATEX)"
+else
+    LATEX_CMD="$(command -v $LATEX)"
 fi
+[ -x "$LATEX_CMD" ] || { echo "$LATEX executable not found" 1>&2; exit 1; }
 
 SOURCE_DIR=$(dirname "$PROG_HOME")/docs/docs
 DATA_DIR=$PROG_HOME/data

@@ -30,7 +30,7 @@ getOS() {
 
 download() {
     local status=0
-    ## Update path part '2022/01/04' to retrieve newer archive files
+    ## Update path part '2022/01/04' to retrieve the latest archive files
     local archive_url=https://texlive.info/tlnet-archive/2022/01/04/tlnet/archive
     local archive_files="dejavu environ fancyvrb fontspec gnu-freefont"
     archive_files="$archive_files l3backend l3kernel l3packages pgf"
@@ -123,7 +123,8 @@ STATUS="$(install)"
 TEXHASH_OPTS=--quiet
 [ $DEBUG ] && TEXHASH_OPTS=--verbose
 
-[ $DEBUG ] && echo "Rebuild database indices" >>$LOG_FILE
+echo "Rebuild database indices"
+[ $DEBUG ] && echo "$TEXHASH_CMD $TEXHASH_OPTS" >>$LOG_FILE
 $TEXHASH_CMD $TEXHASH_OPTS
 [ $? -eq 0 ] || exit 1
 
