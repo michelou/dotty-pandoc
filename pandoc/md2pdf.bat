@@ -89,7 +89,7 @@ set _PANDOC_OPTS=--quiet
 set _PANDOC_OPTS=%_PANDOC_OPTS% --data-dir="%_DATA_DIR%"
 set _PANDOC_OPTS=%_PANDOC_OPTS% --defaults="%__DEFAULTS_FILE%"
 @rem CAUTION: option --syntax-definition does not work with absolute paths
-set _PANDOC_OPTS=%_PANDOC_OPTS% --syntax-definition="!__SYNTAX_FILE:%_ROOT_DIR%=!"
+^set _PANDOC_OPTS=%_PANDOC_OPTS% --syntax-definition="!__SYNTAX_FILE:%_ROOT_DIR%=!"
 set _PANDOC_OPTS=%_PANDOC_OPTS% -V geometry=a4paper -V geometry:margin=30mm
 @rem DejaVuSerif font fails to display greek characters correctly (e.g. β-reduce)
 @rem set _PANDOC_OPTS=%_PANDOC_OPTS% -V "mainfont:DejaVuSerif.ttf"

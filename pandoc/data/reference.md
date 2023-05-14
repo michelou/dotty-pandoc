@@ -16,15 +16,13 @@ abstract: |
 ../out/pandoc/src_managed/reference/overview.md
 ```
 
-## Soft Keywords [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/soft-modifier.html) {#soft-modifier}
-```{.include}
-../out/pandoc/src_managed/reference/soft-modifier.md
-```
-
 [new-types]: #################################################################
 
 \newpage
-# New Types [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/new-types.html) {#new-types}
+# New Types [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/new-types/index.html) {#new-types}
+```{.include}
+../out/pandoc/src_managed/reference/new-types/new-types.md
+```
 
 ## Intersection types [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/new-types/intersection-types.html) {#intersection-types}
 ```{.include shift-heading-level-by=1}
@@ -59,7 +57,10 @@ abstract: |
 [enums]: #####################################################################
 
 \newpage
-# Enums [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/enums.html) {#enums-2}
+# Enums [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/enums/index.html) {#enums-index}
+```{.include}
+../out/pandoc/src_managed/reference/enums/enums-index.md
+```
 
 ## Enumerations [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/enums/enums.html) {#enums}
 ```{.include shift-heading-level-by=1}
@@ -79,10 +80,8 @@ abstract: |
 [contextual-abstractions]: ###################################################
 
 \newpage
-# Contextual Abstractions [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/contextual.html) {#contextual-abstractions}
-
-## Overview [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/contextual/contextual.html) {#motivation}
-```{.include shift-heading-level-by=1}
+# Contextual Abstractions [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/contextual/index.html) {#contextual-abstractions}
+```{.include}
 ../out/pandoc/src_managed/reference/contextual/contextual.md
 ```
 
@@ -111,6 +110,11 @@ abstract: |
 ../out/pandoc/src_managed/reference/contextual/extension-methods.md
 ```
 
+## Right-Associative Extension Methods [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/contextual/right-associative-extension-methods.html) {#right-associative-extension-methods}
+```{.include shift-heading-level-by=1}
+../out/pandoc/src_managed/reference/contextual/right-associative-extension-methods.md
+```
+
 ## Implementing Type classes [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/contextual/type-classes.html) {#type-classes}
 ```{.include shift-heading-level-by=1}
 ../out/pandoc/src_managed/reference/contextual/type-classes.md
@@ -120,6 +124,11 @@ abstract: |
 ```{.include shift-heading-level-by=1}
 ../out/pandoc/src_managed/reference/contextual/derivation.md
 ```
+
+## How to write a type class `derived` method using macros [![](../out/pandoc/images/external.png){witdh=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/contextual/derivation-macro.html) {#derivation-macro}
+```{.include shift-heading-level-by=1}
+../out/pandoc/src_managed/reference/contextual/derivation-macro.md
+``` 
 
 ## Multiversal Equality [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/contextual/multiversal-equality.html) {#multiversal-equality}
 ```{.include shift-heading-level-by=1}
@@ -146,16 +155,10 @@ abstract: |
 ../out/pandoc/src_managed/reference/contextual/relationship-implicits.md
 ```
 
-## How to write a type class `derived` method using macros {#derivation-macro}
-```{.include shift-heading-level-by=1}
-../out/pandoc/src_managed/reference/contextual/derivation-macro.md
-``` 
-
 [metaprogramming]: ###########################################################
 
 \newpage
 # Metaprogramming [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/metaprogramming.html) {#metaprogramming}
-
 ```{.include}
 ../out/pandoc/src_managed/reference/metaprogramming/metaprogramming.md
 ```
@@ -165,12 +168,17 @@ abstract: |
 ../out/pandoc/src_managed/reference/metaprogramming/inline.md
 ```
 
+## Compile-time Operations [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/metaprogramming/compiletime-ops.html) {#compiletime-ops}
+```{.include shift-heading-level-by=1}
+../out/pandoc/src_managed/reference/metaprogramming/compiletime-ops.md
+```
+
 ## Macros [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/metaprogramming/macros.html) {#macros}
 ```{.include shift-heading-level-by=1}
 ../out/pandoc/src_managed/reference/metaprogramming/macros.md
 ```
 
-## Multi-Stage Programming [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/metaprogramming/staging.html) {#staging}
+## Runtime Multi-Stage Programming [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/metaprogramming/staging.html) {#staging}
 ```{.include shift-heading-level-by=1}
 ../out/pandoc/src_managed/reference/metaprogramming/staging.md
 ```
@@ -196,7 +204,7 @@ abstract: |
 # Other New Features [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/other-new-features.html) {#other-new-features}
 
 ```{.include shift-heading-level-by=1}
-../out/pandoc/src_managed/reference/other-new-features/other-new-types.md
+../out/pandoc/src_managed/reference/other-new-features/other-new-features.md
 ```
 
 ## Trait Parameters [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/other-new-features/trait-parameters.html) {#trait-parameters}
@@ -240,7 +248,7 @@ abstract: |
 ```
 
 ## The Matchable Trait [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/other-new-features/matchable.html) {#matchable}
-```{.include}
+```{.include shift-heading-level-by=1}
 ../out/pandoc/src_managed/reference/other-new-features/matchable.md
 ```
 
@@ -264,13 +272,9 @@ abstract: |
 ../out/pandoc/src_managed/reference/other-new-features/indentation.md
 ```
 
-## Fewer Braces [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/other-new-features/indentation-experimental.html) {#indentation-experimental}
+## Fewer Braces [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/other-new-features/indentationhtml) {#indentation}
 ```{.include shift-heading-level-by=1}
-../out/pandoc/src_managed/reference/other-new-features/indentation-experimental.md
-```
-## Explicit Nulls [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/other-new-features/explicit-nulls.html) {#explicit-nulls}
-```{.include shift-heading-level-by=1}
-../out/pandoc/src_managed/reference/other-new-features/explicit-nulls.md
+../out/pandoc/src_managed/reference/other-new-features/indentation.md
 ```
 
 ## Safe Initialization [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/other-new-features/safe-initialization.html) {#safe-initialization}
@@ -443,7 +447,7 @@ abstract: |
 ../out/pandoc/src_managed/reference/dropped-features/limit22.md
 ```
 
-## Dropped: XML literals [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/dropped-features/xml.html) {#xml}
+## Dropped: XML Literals [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/dropped-features/xml.html) {#xml}
 ```{.include shift-heading-level-by=1}
 ../out/pandoc/src_managed/reference/dropped-features/xml.md
 ```
@@ -473,10 +477,15 @@ abstract: |
 ../out/pandoc/src_managed/reference/dropped-features/this-qualifier.md
 ```
 
+## Dropped: Wildcard Initializer [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/dropped-features/wildcard-init.html) {#wildcard-init}
+```{.include shift-heading-level-by=1}
+../out/pandoc/src_managed/reference/dropped-features/wildcard-init.md
+```
+
 [experimental]: ##############################################################
 
 \newpage
-# Experimental Features [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/experimental/overview.html) {#experimental-features}
+# Experimental [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/experimental/overview.html) {#experimental}
 
 ## CanThrow Capabilities [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/experimental/canthrow.html) {#canthrow}
 ```{.include shift-heading-level-by=1}
@@ -498,6 +507,31 @@ abstract: |
 ../out/pandoc/src_managed/reference/experimental/numeric-literals.md
 ```
 
+## Explicit Nulls [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/experimental/explicit-nulls.html) {#explicit-nulls}
+```{.include shift-heading-level-by=1}
+../out/pandoc/src_managed/reference/experimental/explicit-nulls.md
+```
+
+## `MainAnnotation` [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/experimental/main-annotation.html) {#main-annotation}
+```{.include shift-heading-level-by=1}
+../out/pandoc/src_managed/reference/experimental/main-annotation.md
+```
+
+## Capture Checking [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/experimental/cc.html) {#cc}
+```{.include shift-heading-level-by=1}
+../out/pandoc/src_managed/reference/experimental/cc.md
+```
+
+## Pure Functions [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/experimental/purefuns.html) {#purefuns}
+```{.include shift-heading-level-by=1}
+../out/pandoc/src_managed/reference/experimental/purefuns.md
+```
+
+## Tupled Function [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/experimental/tupled-function.html) {#tupled-function}
+```{.include shift-heading-level-by=1}
+../out/pandoc/src_managed/reference/experimental/tupled-function.md
+```
+
 [syntax]: ####################################################################
 
 \newpage
@@ -509,9 +543,29 @@ abstract: |
 [language-versions]: #########################################################
 
 \newpage
-# Language Versions [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/language-versions.html) {#language-versions}
+# Language Versions [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/language-versions/index.html) {#language-versions}
+```{.include}
+../out/pandoc/src_managed/reference/language-versions/language-versions.md
+```
+
+## Source Compatibility [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/language-versions/source-compatibility.html) {#source-compatibility}
 ```{.include shift-heading-level-by=1}
-../out/pandoc/src_managed/reference/language-versions.md
+../out/pandoc/src_managed/reference/language-versions/source-compatibility.md
+```
+
+## Binary Compatibility [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/language-versions/binary-compatibility.html) {#binary-compatibility}
+```{.include shift-heading-level-by=1}
+../out/pandoc/src_managed/reference/language-versions/binary-compatibility.md
+```
+
+# Soft Keywords [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/soft-modifier.html) {#soft-modifier}
+```{.include}
+../out/pandoc/src_managed/reference/soft-modifier.md
+```
+
+# A Classification of Proposed Language Features [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/features-classification.html) {#features-classification}
+```{.include}
+../out/pandoc/src_managed/reference/features-classification.md
 ```
 
 [appendix]: ##################################################################

@@ -1,5 +1,7 @@
 ---
-layout: doc-page
+layout: index
+redirectFrom: /docs/index.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/
 ---
 
 Dotty is the project name for technologies that are considered for inclusion in Scala 3. Scala has
@@ -15,7 +17,3 @@ be a big step towards realizing the full potential of these ideas. Its main obje
 In this documentation you will find information on how to use the Dotty compiler on your machine,
 navigate through the code, setup Dotty with your favorite IDE and more!
 
-Table of Contents
-=================
-{% assign titles = sidebar.titles %}
-{% include "table-of-contents" %}

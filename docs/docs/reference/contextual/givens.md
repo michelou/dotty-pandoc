@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "Given Instances"
-movedTo: https://docs.scala-lang.org/scala3/reference/contextual/givens.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/contextual/givens.html
 ---
 
 Given instances (or, simply, "givens") define "canonical" values of certain types
@@ -10,8 +10,9 @@ that serve for synthesizing arguments to [context parameters](./using-clauses.md
 ```scala
 trait Ord[T]:
   def compare(x: T, y: T): Int
-  extension (x: T) def < (y: T) = compare(x, y) < 0
-  extension (x: T) def > (y: T) = compare(x, y) > 0
+  extension (x: T)
+    def < (y: T) = compare(x, y) < 0
+    def > (y: T) = compare(x, y) > 0
 
 given intOrd: Ord[Int] with
   def compare(x: Int, y: Int) =
@@ -51,18 +52,18 @@ given [T](using Ord[T]): Ord[List[T]] with
 If the name of a given is missing, the compiler will synthesize a name from
 the implemented type(s).
 
-**Note** The name synthesized by the compiler is chosen to be readable and reasonably concise. For instance, the two instances above would get the names:
+**Note:** The name synthesized by the compiler is chosen to be readable and reasonably concise. For instance, the two instances above would get the names:
 
 ```scala
 given_Ord_Int
-given_Ord_List_T
+given_Ord_List
 ```
 
 The precise rules for synthesizing names are found [here](./relationship-implicits.html#anonymous-given-instances). These rules do not guarantee absence of name conflicts between
 given instances of types that are "too similar". To avoid conflicts one can
 use named instances.
 
-**Note** To ensure robust binary compatibility, publicly available libraries should prefer named instances.
+**Note:** To ensure robust binary compatibility, publicly available libraries should prefer named instances.
 
 ## Alias Givens
 
@@ -99,6 +100,28 @@ transparent inline given mkAnnotations[A, T]: Annotations[A, T] = ${
 ```
 
 Since `mkAnnotations` is `transparent`, the type of an application is the type of its right-hand side, which can be a proper subtype of the declared result type `Annotations[A, T]`.
+
+Given instances can have the `inline` but not `transparent` modifiers as their type is already known from the signature.
+Example:
+
+```scala
+trait Show[T] {
+  inline def show(x: T): String
+}
+
+inline given Show[Foo] with {
+  /*transparent*/ inline def show(x: Foo): String = ${ ... }
+}
+
+def app =
+  // inlines `show` method call and removes the call to `given Show[Foo]`
+  summon[Show[Foo]].show(foo)
+```
+Note that the inline methods within the given instances may be `transparent`.
+
+The inlining of given instances will not inline/duplicate the implementation of the given, it will just inline the instantiation of that instance.
+This is used to help dead code elimination of the given instances that are not used after inlining.
+
 
 ## Pattern-Bound Given Instances
 
@@ -151,7 +174,7 @@ is created for each reference.
 
 Here is the syntax for given instances:
 
-```
+```ebnf
 TmplDef             ::=  ...
                      |   ‘given’ GivenDef
 GivenDef            ::=  [GivenSig] StructuralInstance

@@ -1,7 +1,8 @@
 ---
 layout: doc-page
-title: "Overview"
-movedTo: https://docs.scala-lang.org/scala3/reference/overview.html
+title: "Reference"
+nightlyOf: https://docs.scala-lang.org/scala3/reference/overview.html
+redirectFrom: overview.html
 ---
 
 Scala 3 implements many language changes and improvements over Scala 2.
@@ -20,7 +21,7 @@ The language redesign was guided by three main goals:
 - Further improve the consistency and expressiveness of Scala's language constructs.
 
 Corresponding to these goals, the language changes fall into seven categories:
-(1) Core constructs to strengthen foundations, (2) simplifications and (3) [restrictions](#restrictions), to make the language easier and safer to use, (4) [dropped constructs](#dropped-constructs) to make the language smaller and more regular, (5) [changed constructs](#changes) to remove warts, and increase consistency and usability, (6) [new constructs](#new-constructs) to fill gaps and increase expressiveness, (7) a new, principled approach to metaprogramming that replaces [Scala 2 experimental macros](https://docs.scala-lang.org/overviews/macros/overview.md).
+(1) Core constructs to strengthen foundations, (2) simplifications and (3) [restrictions](#restrictions), to make the language easier and safer to use, (4) [dropped constructs](#dropped-constructs) to make the language smaller and more regular, (5) [changed constructs](#changes) to remove warts, and increase consistency and usability, (6) [new constructs](#new-constructs) to fill gaps and increase expressiveness, (7) a new, principled approach to metaprogramming that replaces [Scala 2 experimental macros](https://docs.scala-lang.org/overviews/macros/overview.html).
 
 ## Essential Foundations
 
@@ -44,7 +45,7 @@ These constructs replace existing constructs with the aim of making the language
 - [Extension methods](contextual/extension-methods.md)
   replace implicit classes with a clearer and simpler mechanism.
 - [Opaque type aliases](other-new-features/opaques.md)
-  replace most uses of value classes while guaranteeing absence of boxing.
+  replace most uses of value classes while guaranteeing the absence of boxing.
 - [Top-level definitions](dropped-features/package-objects.md)
   replace package objects, dropping syntactic boilerplate.
 - [Export clauses](other-new-features/export.md)
@@ -130,7 +131,7 @@ These are additions to the language that make it more powerful or pleasant to us
 
 ## Metaprogramming
 
-The following constructs together aim to put metaprogramming in Scala on a new basis. So far, metaprogramming was achieved by a combination of macros and libraries such as [Shapeless](https://github.com/milessabin/shapeless) that were in turn based on some key macros. Current Scala 2 macro mechanisms are a thin veneer on top the current Scala 2 compiler, which makes them fragile and in many cases impossible to port to Scala 3.
+The following constructs together aim to put metaprogramming in Scala on a new basis. So far, metaprogramming was achieved by a combination of macros and libraries such as [Shapeless](https://github.com/milessabin/shapeless) that were in turn based on some key macros. Current Scala 2 macro mechanisms are a thin veneer on top of the current Scala 2 compiler, which makes them fragile and in many cases impossible to port to Scala 3.
 
 It's worth noting that macros were never included in the [Scala 2 language specification](https://scala-lang.org/files/archive/spec/2.13/) and were so far made available only under an `-experimental` flag. This has not prevented their widespread usage.
 

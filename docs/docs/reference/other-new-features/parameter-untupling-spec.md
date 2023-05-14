@@ -1,40 +1,10 @@
 ---
 layout: doc-page
 title: "Parameter Untupling - More Details"
-movedTo: https://docs.scala-lang.org/scala3/reference/other-new-features/parameter-untupling-spec.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/other-new-features/parameter-untupling-spec.html
 ---
 
-## Motivation
 
-Say you have a list of pairs
-
-```scala
-val xs: List[(Int, Int)]
-```
-
-and you want to map `xs` to a list of `Int`s so that each pair of numbers is mapped to their sum.
-Previously, the best way to do this was with a pattern-matching decomposition:
-
-```scala
-xs.map {
-  case (x, y) => x + y
-}
-```
-While correct, this is inconvenient. Instead, we propose to write it the following way:
-
-```scala
-xs.map {
-  (x, y) => x + y
-}
-```
-
-or, equivalently:
-
-```scala
-xs.map(_ + _)
-```
-
-Generally, a function value with `n > 1` parameters can be converted to a function with tupled arguments if the expected type is a unary function type of the form `((T_1, ..., T_n)) => U`.
 
 ## Type Checking
 
@@ -77,11 +47,12 @@ is feasible for parameter untupling with the expected type `TupleN[T1, ..., Tn] 
 with the same expected type.
 ## Migration
 
-Code like this could not be written before, hence the new notation would not be ambiguous after adoption.
+Code like this could not be written before, hence the new notation is not ambiguous after adoption.
 
-Though it is possible that someone has written an implicit conversion form `(T1, ..., Tn) => R` to `TupleN[T1, ..., Tn] => R`
-for some `n`. This change could be detected and fixed by [`Scalafix`](https://scalacenter.github.io/scalafix/). Furthermore, such conversion would probably
-be doing the same translation (semantically) but in a less efficient way.
+It is possible that someone has written an implicit conversion from `(T1, ..., Tn) => R` to `TupleN[T1, ..., Tn] => R` for some `n`.
+Such a conversion is now only useful for general conversions of function values, when parameter untupling is not applicable.
+Some care is required to implement the conversion efficiently.
+Obsolete conversions could be detected and fixed by [`Scalafix`](https://scalacenter.github.io/scalafix/).
 
 ## Reference
 

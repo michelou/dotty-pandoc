@@ -1,7 +1,7 @@
 ---
-layout: doc-page
+layout: index
 title: "Metaprogramming"
-movedTo: https://docs.scala-lang.org/scala3/reference/metaprogramming.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/metaprogramming.html
 ---
 
 The following pages introduce the redesign of metaprogramming in Scala. They
@@ -39,7 +39,7 @@ introduce the following fundamental facilities:
    representation of code. They can be parameterized and composed using
    splices, but their structure cannot be analyzed from the outside. TASTy
    reflection gives a way to analyze code structure by partly revealing the representation type of a piece of code in a standard API. The representation
-   type is a form of typed abstract syntax tree, which gives rise to the `TASTy`
+   type is a form of **t**yped **a**bstract **s**yntax **t**ree, which gives rise to the `TASTy`
    moniker.
 
 6. [TASTy Inspection](./tasty-inspect.md) Typed abstract syntax trees are serialized

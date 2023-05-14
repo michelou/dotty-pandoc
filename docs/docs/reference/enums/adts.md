@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "Algebraic Data Types"
-movedTo: https://docs.scala-lang.org/scala3/reference/enums/adts.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/enums/adts.html
 ---
 
 The [`enum` concept](./enums.md) is general enough to also support algebraic data
@@ -91,7 +91,7 @@ enum Color(val rgb: Int):
   case Mix(mix: Int) extends Color(mix)
 ```
 
-### Parameter Variance of Enums
+## Parameter Variance of Enums
 
 By default, parameterized cases of enums with type parameters will copy the type parameters of their parent, along
 with any variance notations. As usual, it is important to use type parameters carefully when they are variant, as shown
@@ -147,14 +147,14 @@ enum View[-T, +U] extends (T => U):
     case refl: Refl[r] => refl.f(t)
 ```
 
-### Syntax of Enums
+## Syntax of Enums
 
 Changes to the syntax fall in two categories: enum definitions and cases inside enums.
 The changes are specified below as deltas with respect to the Scala syntax given [here](../syntax.md)
 
  1. Enum definitions are defined as follows:
 
-    ```
+    ```ebnf
     TmplDef   ::=  `enum' EnumDef
     EnumDef   ::=  id ClassConstr [`extends' [ConstrApps]] EnumBody
     EnumBody  ::=  [nl] ‘{’ [SelfType] EnumStat {semi EnumStat} ‘}’
@@ -164,10 +164,10 @@ The changes are specified below as deltas with respect to the Scala syntax given
 
  2. Cases of enums are defined as follows:
 
-    ```
+    ```ebnf
     EnumCase  ::=  `case' (id ClassConstr [`extends' ConstrApps]] | ids)
     ```
 
-### Reference
+## Reference
 
 For more information, see [Issue #1970](https://github.com/lampepfl/dotty/issues/1970).

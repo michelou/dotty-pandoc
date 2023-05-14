@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "Opaque Type Aliases"
-movedTo: https://docs.scala-lang.org/scala3/reference/other-new-features/opaques.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/other-new-features/opaques.html
 ---
 
 Opaque types aliases provide type abstraction without any overhead. Example:
@@ -33,9 +33,9 @@ end MyMath
 
 This introduces `Logarithm` as a new abstract type, which is implemented as `Double`.
 The fact that `Logarithm` is the same as `Double` is only known in the scope where
-`Logarithm` is defined which in the above example corresponds to the object `MyMath`.
-Or in other words, within the scope it is treated as type alias, but this is opaque to the outside world
-where in consequence `Logarithm` is seen as an abstract type and has nothing to do with `Double`.
+`Logarithm` is defined, which in the above example corresponds to the object `MyMath`.
+Or in other words, within the scope, it is treated as a type alias, but this is opaque to the outside world
+where, in consequence, `Logarithm` is seen as an abstract type that has nothing to do with `Double`.
 
 The public API of `Logarithm` consists of the `apply` and `safe` methods defined in the companion object.
 They convert from `Double`s to `Logarithm` values. Moreover, an operation `toDouble` that converts the other way, and operations `+` and `*` are defined as extension methods on `Logarithm` values.
@@ -59,7 +59,7 @@ l * 2                   // error: found: Int(2), required: Logarithm
 l / l2                  // error: `/` is not a member of Logarithm
 ```
 
-### Bounds For Opaque Type Aliases
+## Bounds For Opaque Type Aliases
 
 Opaque type aliases can also come with bounds. Example:
 
@@ -70,13 +70,12 @@ object Access:
   opaque type PermissionChoice = Int
   opaque type Permission <: Permissions & PermissionChoice = Int
 
-  extension (x: Permissions)
-    def & (y: Permissions): Permissions = x | y
   extension (x: PermissionChoice)
     def | (y: PermissionChoice): PermissionChoice = x | y
+  extension (x: Permissions)
+    def & (y: Permissions): Permissions = x | y
   extension (granted: Permissions)
     def is(required: Permissions) = (granted & required) == required
-  extension (granted: Permissions)
     def isOneOf(required: PermissionChoice) = (granted & required) != 0
 
   val NoPermission: Permission = 0
@@ -101,9 +100,12 @@ where `x | y` means "a permission in `x` *or* in `y` granted".
 
 Note that inside the `Access` object, the `&` and `|` operators always resolve to the corresponding methods of `Int`,
 because members always take precedence over extension methods.
-Because of that, the `|` extension method in `Access` does not cause infinite recursion.
-Also, the definition of `ReadWrite` must use `|`,
-even though an equivalent definition outside `Access` would use `&`.
+For that reason, the `|` extension method in `Access` does not cause infinite recursion.
+
+In particular, the definition of `ReadWrite` must use `|`, the bitwise operator for `Int`,
+even though client code outside `Access` would use `&`, the extension method on `Permissions`.
+The internal representations of `ReadWrite` and `ReadOrWrite` are identical, but this is not visible to the client,
+which is interested only in the semantics of `Permissions`, as in the example below.
 
 All three opaque type aliases have the same underlying representation type `Int`. The
 `Permission` type has an upper bound `Permissions & PermissionChoice`. This makes
@@ -115,8 +117,11 @@ object User:
   import Access.*
 
   case class Item(rights: Permissions)
+  extension (item: Item)
+    def +(other: Item): Item = Item(item.rights & other.rights)
 
   val roItem = Item(Read)  // OK, since Permission <: Permissions
+  val woItem = Item(Write)
   val rwItem = Item(ReadWrite)
   val noItem = Item(NoPermission)
 
@@ -128,14 +133,21 @@ object User:
 
   assert(!noItem.rights.is(ReadWrite))
   assert(!noItem.rights.isOneOf(ReadOrWrite))
+
+  assert((roItem + woItem).rights.is(ReadWrite))
 end User
 ```
+On the other hand, the call `roItem.rights.isOneOf(ReadWrite)` would give a type error:
+```scala
+  assert(roItem.rights.isOneOf(ReadWrite))
+                               ^^^^^^^^^
+                               Found:    (Access.ReadWrite : Access.Permissions)
+                               Required: Access.PermissionChoice
+```
+`Permissions` and `PermissionChoice` are different, unrelated types outside `Access`.
 
-On the other hand, the call `roItem.rights.isOneOf(ReadWrite)` would give a type error
-since `Permissions` and `PermissionChoice` are different, unrelated types outside `Access`.
 
-
-### Opaque Type Members on Classes
+## Opaque Type Members on Classes
 While typically, opaque types are used together with objects to hide implementation details of a module, they can also be used with classes.
 
 For example, we can redefine the above example of Logarithms as a class.
@@ -162,6 +174,6 @@ val z = l2(3.1)
 l1.mul(x, y) // type checks
 l1.mul(x, z) // error: found l2.Logarithm, required l1.Logarithm
 ```
-In general, one can think of an opaque type as being only transparent in the scope of `private[this]`.
+In general, one can think of an opaque type as being only transparent in the scope of `private[this]` (unless the type is a top level definition - in this case, it's transparent only within the file it's defined in).
 
 [More details](opaques-details.md)

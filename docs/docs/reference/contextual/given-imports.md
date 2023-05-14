@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "Importing Givens"
-movedTo: https://docs.scala-lang.org/scala3/reference/contextual/given-imports.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/contextual/given-imports.html
 ---
 
 A special form of import wildcard selector is used to import given instances. Example:
@@ -40,7 +40,7 @@ There are two main benefits arising from these rules:
   can be anonymous, so the usual recourse of using named imports is not
   practical.
 
-### Importing By Type
+## Importing By Type
 
 Since givens can be anonymous it is not always practical to import them by their name, and wildcard imports are typically used instead. By-type imports provide a more specific alternative to wildcard imports, which makes it clearer what is imported. Example:
 
@@ -82,7 +82,7 @@ import Instances.{im, given Ordering[?]}
 
 would import `im`, `intOrd`, and `listOrd` but leave out `ec`.
 
-### Migration
+## Migration
 
 The rules for imports stated above have the consequence that a library
 would have to migrate in lockstep with all its users from old style implicits and
@@ -101,9 +101,9 @@ These rules mean that library users can use `given` selectors to access old-styl
 and will be gently nudged and then forced to do so in later versions. Libraries can then switch to
 given instances once their user base has migrated.
 
-### Syntax
+## Syntax
 
-```
+```ebnf
 Import            ::=  ‘import’ ImportExpr {‘,’ ImportExpr}
 Export            ::=  ‘export’ ImportExpr {‘,’ ImportExpr}
 ImportExpr        ::=  SimpleRef {‘.’ id} ‘.’ ImportSpec

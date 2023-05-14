@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "CanThrow Capabilities"
-movedTo: https://docs.scala-lang.org/scala3/reference/experimental/canthrow.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/experimental/canthrow.html
 ---
 
 This page describes experimental support for exception checking in Scala 3. It is enabled by the language import
@@ -120,11 +120,11 @@ catch
 the compiler generates an accumulated capability of type `CanThrow[Ex1 | ... | Ex2]` that is available as a given in the scope of `body`. It does this by augmenting the `try` roughly as follows:
 ```scala
 try
-  erased given CanThrow[Ex1 | ... | ExN] = ???
+  erased given CanThrow[Ex1 | ... | ExN] = compiletime.erasedValue
   body
 catch ...
 ```
-Note that the right-hand side of the synthesized given is `???` (undefined). This is OK since
+Note that the right-hand side of the synthesized given is `compiletime.erasedValue`. This is OK since
 this given is erased; it will not be executed at runtime.
 
 **Note 1:** The [`saferExceptions`](https://scala-lang.org/api/3.x/scala/runtime/stdLibPatches/language$$experimental$$saferExceptions$.html) feature is designed to work only with checked exceptions. An exception type is _checked_ if it is a subtype of
@@ -196,7 +196,7 @@ Everything typechecks and works as expected. But wait - we have called `map` wit
 // compiler-generated code
 @main def test(xs: Double*) =
   try
-    erased given ctl: CanThrow[LimitExceeded] = ???
+    erased given ctl: CanThrow[LimitExceeded] = compiletime.erasedValue
     println(xs.map(x => f(x)(using ctl)).sum)
   catch case ex: LimitExceeded => println("too large")
 ```

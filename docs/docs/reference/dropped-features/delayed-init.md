@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "Dropped: DelayedInit"
-movedTo: https://docs.scala-lang.org/scala3/reference/dropped-features/delayed-init.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/dropped-features/delayed-init.html
 ---
 
 The special handling of the [`DelayedInit`](https://scala-lang.org/api/3.x/scala/DelayedInit.html)
@@ -18,7 +18,7 @@ object HelloWorld extends App {
 ```
 
 However, the code is now run in the initializer of the object, which on
-some JVM's means that it will only be interpreted. So, better not use it
+some JVMs means that it will only be interpreted. So, better not use it
 for benchmarking! Also, if you want to access the command line arguments,
 you need to use an explicit `main` method for that.
 

@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "Using Clauses"
-movedTo: https://docs.scala-lang.org/scala3/reference/contextual/using-clauses.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/contextual/using-clauses.html
 ---
 
 Functional programming tends to express most dependencies as simple function parameterization.
@@ -43,36 +43,43 @@ def maximum[T](xs: List[T])(using Ord[T]): T =
   xs.reduceLeft(max)
 ```
 
-`maximum` takes a context parameter of type `Ord` only to pass it on as an
+`maximum` takes a context parameter of type `Ord[T]` only to pass it on as an
 inferred argument to `max`. The name of the parameter is left out.
 
 Generally, context parameters may be defined either as a full parameter list `(p_1: T_1, ..., p_n: T_n)` or just as a sequence of types `T_1, ..., T_n`. Vararg parameters are not supported in `using` clauses.
 
 ## Class Context Parameters
 
-If a class context parameter is made a member by adding a `val` or `var` modifier,
-then that member is available as a given instance.
-
-Compare the following examples, where the attempt to supply an explicit `given` member induces an ambiguity:
-
+To make a class context parameter visible from outside the class body, it can be made into a member by adding a `val` or `var` modifier.
 ```scala
-class GivenIntBox(using val givenInt: Int):
-  def n = summon[Int]
+class GivenIntBox(using val usingParameter: Int):
+  def myInt = summon[Int]
 
-class GivenIntBox2(using givenInt: Int):
-  given Int = givenInt
-  //def n = summon[Int]     // ambiguous
+val b = GivenIntBox(using 23)
+import b.usingParameter
+summon[Int]  // 23
 ```
 
-The `given` member is importable as explained in the section on [importing `given`s](./given-imports.md):
+This is preferable to creating an explicit `given` member, as the latter creates ambiguity inside the class body:
+```scala
+class GivenIntBox2(using usingParameter: Int):
+  given givenMember: Int = usingParameter
+  def n = summon[Int]  // ambiguous given instances: both usingParameter and givenMember match type Int
+```
+
+From the outside of `GivenIntBox`, `usingParameter` appears as if it were defined in the class as `given usingParameter: Int`, in particular it must be imported as described in the section on [importing `given`s](./given-imports.md).
 
 ```scala
 val b = GivenIntBox(using 23)
+// Works:
 import b.given
 summon[Int]  // 23
+usingParameter  // 23
 
+// Fails:
 import b.*
-//givenInt   // Not found
+summon[Int]      // No given instance found
+usingParameter   // Not found
 ```
 
 ## Inferring Complex Arguments
@@ -93,8 +100,7 @@ With this setup, the following calls are all well-formed, and they all normalize
 ```scala
 minimum(xs)
 maximum(xs)(using descending)
-maximum(xs)(using descending(using listOrd))
-maximum(xs)(using descending(using listOrd(using intOrd)))
+maximum(xs)(using descending(using intOrd))
 ```
 
 ## Multiple `using` Clauses
@@ -144,10 +150,10 @@ def summon[T](using x: T): x.type = x
 
 Here is the new syntax of parameters and arguments seen as a delta from the [standard context free syntax of Scala 3](../syntax.md). `using` is a soft keyword, recognized only at the start of a parameter or argument list. It can be used as a normal identifier everywhere else.
 
-```
+```ebnf
 ClsParamClause      ::=  ... | UsingClsParamClause
-DefParamClauses     ::=  ... | UsingParamClause
+DefParamClause      ::=  ... | UsingParamClause
 UsingClsParamClause ::=  ‘(’ ‘using’ (ClsParams | Types) ‘)’
-UsingParamClause    ::=  ‘(’ ‘using’ (DefParams | Types) ‘)’
+UsingParamClause    ::=  ‘(’ ‘using’ (DefTermParams | Types) ‘)’
 ParArgumentExprs    ::=  ... | ‘(’ ‘using’ ExprsInParens ‘)’
 ```

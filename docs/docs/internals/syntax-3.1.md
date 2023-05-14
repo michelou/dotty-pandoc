@@ -16,7 +16,7 @@ hexDigit      ::= ‘0’ | … | ‘9’ | ‘A’ | … | ‘F’ | ‘a’ | 
 
 Informal descriptions are typeset as `“some comment”`.
 
-### Lexical Syntax
+## Lexical Syntax
 The lexical syntax of Scala is given by the following grammar in EBNF
 form.
 
@@ -24,14 +24,14 @@ form.
 whiteSpace       ::=  ‘\u0020’ | ‘\u0009’ | ‘\u000D’ | ‘\u000A’
 upper            ::=  ‘A’ | … | ‘Z’ | ‘\$’ | ‘_’  “… and Unicode category Lu”
 lower            ::=  ‘a’ | … | ‘z’ “… and Unicode category Ll”
-letter           ::=  upper | lower “… and Unicode categories Lo, Lt, Nl”
+letter           ::=  upper | lower “… and Unicode categories Lo, Lt, Lm, Nl”
 digit            ::=  ‘0’ | … | ‘9’
 paren            ::=  ‘(’ | ‘)’ | ‘[’ | ‘]’ | ‘{’ | ‘}’ | ‘'(’ | ‘'[’ | ‘'{’
 delim            ::=  ‘`’ | ‘'’ | ‘"’ | ‘.’ | ‘;’ | ‘,’
-opchar           ::=  “printableChar not matched by (whiteSpace | upper | lower |
-                       letter | digit | paren | delim | opchar | Unicode_Sm |
-                       Unicode_So)”
-printableChar    ::=  “all characters in [\u0020, \u007F] inclusive”
+opchar           ::=  ‘!’ | ‘#’ | ‘%’ | ‘&’ | ‘*’ | ‘+’ | ‘-’ | ‘/’ | ‘:’ |
+                      ‘<’ | ‘=’ | ‘>’ | ‘?’ | ‘@’ | ‘\’ | ‘^’ | ‘|’ | ‘~’
+                      “… and Unicode categories Sm, So”
+printableChar    ::=  “all characters in [\u0020, \u007E] inclusive”
 charEscapeSeq    ::=  ‘\’ (‘b’ | ‘t’ | ‘n’ | ‘f’ | ‘r’ | ‘"’ | ‘'’ | ‘\’)
 
 op               ::=  opchar {opchar}
@@ -96,7 +96,7 @@ erased    extends   false     final     finally   for       given     if
 implied   import    lazy      match     new       null      object    package
 private   protected override  return    super     sealed    then      throw
 trait     true      try       type      val       var       while     yield
-:         =         <-        =>        <:        :>        #         @
+:         =         <-        =>        <:        >:        #         @
 ```
 
 ### Soft keywords

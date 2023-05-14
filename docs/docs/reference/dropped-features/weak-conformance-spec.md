@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "Dropped: Weak Conformance - More Details"
-movedTo: https://docs.scala-lang.org/scala3/reference/dropped-features/weak-conformance-spec.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/dropped-features/weak-conformance-spec.html
 ---
 
 To simplify the underlying type theory, Scala 3 drops the notion of
@@ -38,7 +38,7 @@ assigning a type to a constant expression. The new rule is:
     - an `Int -> Short` conversion of a constant
     `c` if `c.toShort.toInt != c`.
 
-### Examples
+## Examples
 
 ```scala
 inline val b = 33

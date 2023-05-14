@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "Relationship with Scala 2 Implicits"
-movedTo: https://docs.scala-lang.org/scala3/reference/contextual/relationship-implicits.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/contextual/relationship-implicits.html
 ---
 
 Many, but not all, of the new contextual abstraction features in Scala 3 can be mapped to Scala 2's implicits. This page gives a rundown on the relationships between new and old features.
@@ -64,7 +64,7 @@ Anonymous given instances get compiler synthesized names, which are generated in
 
 ```scala
 given given_Ord_Int: Ord[Int] with { ... }
-given given_Ord_List_T[T](using ord: Ord[T]): Ord[List[T]] with { ... }
+given given_Ord_List[T](using ord: Ord[T]): Ord[List[T]] with { ... }
 ```
 
 The synthesized type names are formed from

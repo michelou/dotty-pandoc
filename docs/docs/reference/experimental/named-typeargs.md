@@ -1,8 +1,8 @@
 ---
 layout: doc-page
 title: "Named Type Arguments"
-redirectFrom: reference/other-new-features/named-typeargs.html
-movedTo: https://docs.scala-lang.org/scala3/reference/experimental/named-typeargs.html
+redirectFrom: /docs/reference/other-new-features/named-typeargs.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/experimental/named-typeargs.html
 ---
 
 **Note:** This feature is implemented in Scala 3, but is not expected to be part of Scala 3.0.

@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "Match Types"
-movedTo: https://docs.scala-lang.org/scala3/reference/new-types/match-types.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/new-types/match-types.html
 ---
 
 A match type reduces to one of its right-hand sides, depending on the type of
@@ -67,7 +67,7 @@ use of the match type as the return type):
 ```scala
 def leafElem[X](x: X): LeafElem[X] = x match
   case x: String      => x.charAt(0)
-  case x: Array[t]    => leafElem(x(9))
+  case x: Array[t]    => leafElem(x(0))
   case x: Iterable[t] => leafElem(x.head)
   case x: AnyVal      => x
 ```
@@ -82,6 +82,12 @@ following conditions are met:
 4. The match expression patterns are all [Typed Patterns](https://scala-lang.org/files/archive/spec/2.13/08-pattern-matching.html#typed-patterns),
    and these types are `=:=` to their corresponding type patterns in the match
    type
+
+So you know, while the case body will be expected to have the type on the right-hand
+side of the corresponding match type case, that doesn't imply the match type argument
+is constrained.  Using the example, the last case body must conform to X, but that
+doesn't constrain X to be AnyVal, and therefore a LeafElem[X] inside the body wouldn't
+reduce; it would remain stuck, and as such just an abstract type. 
 
 ## Representation of Match Types
 

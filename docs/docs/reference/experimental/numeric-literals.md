@@ -1,10 +1,10 @@
 ---
 layout: doc-page
 title: "Numeric Literals"
-movedTo: https://docs.scala-lang.org/scala3/reference/experimental/numeric-literals.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/experimental/numeric-literals.html
 ---
 
-**Note**: This feature is not yet part of the Scala 3 language definition. It can be made available by a language import:
+This feature is not yet part of the Scala 3 language definition. It can be made available by a language import:
 
 ```scala
 import scala.language.experimental.genericNumberLiterals
@@ -73,7 +73,7 @@ trait FromDigits[T]:
   def fromDigits(digits: String): T
 ```
 
-Implementations of the `fromDigits` convert strings of digits to the values of the
+Implementations of `fromDigits` convert strings of digits to the values of the
 implementation type `T`.
 The `digits` string consists of digits between `0` and `9`, possibly preceded by a
 sign ("+" or "-"). Number separator characters `_` are filtered out before

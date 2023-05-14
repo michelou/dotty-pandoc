@@ -17,7 +17,7 @@ The entire suite of tests can be run using the bootstrapped compiler as follows:
 
 ```bash
 $ sbt
-> dotty-bootstrapped/test
+> scala3-bootstrapped/test
 ```
 
 There are currently several forms of tests in Dotty. These can be split into
@@ -32,7 +32,7 @@ To run all tests in e.g., for the compiler test-suite you can write:
 
 ```bash
 $ sbt
-> dotty-compiler/test
+> scala3-compiler/test
 ```
 
 To run a single test class you use `testOnly` and the fully qualified class name.
@@ -127,10 +127,18 @@ $ sbt
 > testCompilation --help
 ```
 
+### Joint and separate sources compilation
+
+When the sources of a test consist of multiple source files places in a single directory they are passed to the compiler in a single run and the compiler decides in which order to compile them. In some cases, however, to reproduce a specific test scenario it might be necessary to compile the source files in several steps in a specified order. To achieve that one can add a `_${step_index}` suffix to a file name (before the `.scala` or `.java` extension) indicating the order of compilation. E.g. if the test directory contains files named `Foo_1.scala`, `Bar_2.scala` and `Baz_2.scala` then `Foo_1.scala` will be compiled first and after that `Bar_2.scala` together with `Baz_2.scala`.
+
+The other kind of suffix that can modify how particular files are compiled is `_c${compilerVersion}`. When specified, the file will be compiled with a specific version of the compiler instead of the one developed on the current branch.
+
+Different suffixes can be mixed together (their order is not important although consistency is advised), e.g. `Foo_1_c3.0.2`, `Bar_2_c3.1.0`.
+
 ### Bootstrapped-only tests
 
 To run `testCompilation` on a bootstrapped Dotty compiler, use
-`dotty-compiler-bootstrapped/testCompilation` (with the same syntax as above).
+`scala3-compiler-bootstrapped/testCompilation` (with the same syntax as above).
 Some tests can only be run in bootstrapped compilers; that includes all tests
 with `with-compiler` in their name.
 
@@ -144,9 +152,14 @@ with `with-compiler` in their name.
  > testCompilation --from-tasty
  ```
 
- This mode can be run under `dotty-compiler-bootstrapped/testCompilation` to test on a bootstrapped Dotty compiler.
+ This mode can be run under `scala3-compiler-bootstrapped/testCompilation` to test on a bootstrapped Dotty compiler.
 
 ### SemanticDB tests
+
+```bash
+$ sbt
+> scala3-compiler-bootstrapped/testOnly dotty.tools.dotc.semanticdb.SemanticdbTests
+```
 
 The output of the `extractSemanticDB` phase, enabled with `-Xsemanticdb` is tested with the bootstrapped JUnit test
 `dotty.tools.dotc.semanticdb.SemanticdbTests`. It uses source files in `tests/semanticdb/expect` to generate
@@ -157,5 +170,38 @@ Expect files are used as regression tests to detect changes in the compiler.
 
 The test suite will create a new file if it detects any difference, which can be compared with the
 original expect file, or if the user wants to globally replace all expect files for semanticdb they can use
-`dotty-compiler-bootstrapped/test:runMain dotty.tools.dotc.semanticdb.updateExpect`, and compare the changes via version
+`scala3-compiler-bootstrapped/test:runMain dotty.tools.dotc.semanticdb.updateExpect`, and compare the changes via version
 control.
+
+### Test regimes
+
+Continuous integration, managed by GitHub Actions, does not run all jobs when a pull request is created.
+In particular, test jobs for testing under JDK 8 and Windows are not run. Those jobs are run only for the nightly build.
+
+If a PR may fail differentially under either JDK 8 or Windows, the test jobs may be triggered by adding
+a special command to the PR comment text:
+
+```
+[test_java8]
+[test_windows_full]
+```
+Furthermore, CI tests are bootstrapped. A job to also run tests non-bootstrapped may be triggered manually:
+```
+[test_non_bootstrapped]
+```
+A trivial PR, such as a fix for a typo in a comment or when contributing other documentation, may benefit by skipping CI tests altogether:
+```
+[skip ci]
+```
+Other jobs which are normally run can also be selectively skipped:
+```
+[skip community_build]
+[skip test_windows_fast]
+```
+
+## Troubleshooting
+
+Some of the tests depend on temporary state stored in the `out` directory. In rare cases, that directory
+can enter an inconsistent state and cause spurious test failures. If you suspect a spurious test failure,
+you can run `rm -rf out/*` from the root of the repository and run your tests again. If that fails, you
+can try `git clean -xfd`.

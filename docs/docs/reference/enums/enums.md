@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "Enumerations"
-movedTo: https://docs.scala-lang.org/scala3/reference/enums/enums.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/enums/enums.html
 ---
 
 An enumeration is used to define a type consisting of a set of named values.
@@ -15,7 +15,7 @@ This defines a new `sealed` class, `Color`, with three values, `Color.Red`,
 `Color.Green`, `Color.Blue`.  The color values are members of `Color`s
 companion object.
 
-### Parameterized enums
+## Parameterized enums
 
 Enums can be parameterized.
 
@@ -29,7 +29,7 @@ enum Color(val rgb: Int):
 As the example shows, you can define the parameter value by using an
 explicit extends clause.
 
-### Methods defined for enums
+## Methods defined for enums
 
 The values of an enum correspond to unique integers. The integer
 associated with an enum value is returned by its `ordinal` method:
@@ -56,7 +56,7 @@ scala> Color.fromOrdinal(0)
 val res2: Color = Red
 ```
 
-### User-defined members of enums
+## User-defined members of enums
 
 It is possible to add your own definitions to an enum. Example:
 
@@ -77,6 +77,7 @@ enum Planet(mass: Double, radius: Double):
 end Planet
 ```
 
+## User-defined companion object of enums
 It is also possible to define an explicit companion object for an enum:
 
 ```scala
@@ -89,7 +90,34 @@ object Planet:
 end Planet
 ```
 
-### Deprecation of Enum Cases
+## Restrictions on Enum Cases
+
+Enum case declarations are similar to secondary constructors:
+they are scoped outside of the enum template, despite being declared within it.
+This means that enum case declarations cannot access inner members of the
+enum class.
+
+Similarly, enum case declarations may not directly reference members of the enum's companion object,
+even if they are imported (directly, or by renaming). For example:
+
+```scala
+import Planet.*
+enum Planet(mass: Double, radius: Double):
+  private final val (mercuryMass, mercuryRadius) = (3.303e+23, 2.4397e6)
+
+  case Mercury extends Planet(mercuryMass, mercuryRadius)             // Not found
+  case Venus   extends Planet(venusMass, venusRadius)                 // illegal reference
+  case Earth   extends Planet(Planet.earthMass, Planet.earthRadius)   // ok
+object Planet:
+  private final val (venusMass, venusRadius) = (4.869e+24, 6.0518e6)
+  private final val (earthMass, earthRadius) = (5.976e+24, 6.37814e6)
+end Planet
+```
+The fields referenced by `Mercury` are not visible, and the fields referenced by `Venus` may not
+be referenced directly (using `import Planet.*`). You must use an indirect reference,
+such as demonstrated with `Earth`.
+
+## Deprecation of Enum Cases
 
 As a library author, you may want to signal that an enum case is no longer intended for use. However you could still want to gracefully handle the removal of a case from your public API, such as special casing deprecated cases.
 
@@ -133,7 +161,7 @@ object Planet {
 
 We could imagine that a library may use [type class derivation](../contextual/derivation.md) to automatically provide an instance for `Deprecations`.
 
-### Compatibility with Java Enums
+## Compatibility with Java Enums
 
 If you want to use the Scala-defined enums as [Java enums](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html), you can do so by extending
 the class `java.lang.Enum`, which is imported by default, as follows:
@@ -152,9 +180,9 @@ scala> Color.Red.compareTo(Color.Green)
 val res15: Int = -1
 ```
 
-For a more in-depth example of using Scala 3 enums from Java, see [this test](https://github.com/lampepfl/dotty/tree/master/tests/run/enum-java). In the test, the enums are defined in the `MainScala.scala` file and used from a Java source, `Test.java`.
+For a more in-depth example of using Scala 3 enums from Java, see [this test](https://github.com/lampepfl/dotty/tree/main/tests/run/enum-java). In the test, the enums are defined in the `MainScala.scala` file and used from a Java source, `Test.java`.
 
-### Implementation
+## Implementation
 
 Enums are represented as `sealed` classes that extend the `scala.reflect.Enum` trait.
 This trait defines a single public method, `ordinal`:
@@ -188,7 +216,7 @@ definition of value `Color.Red` above would expand to:
 val Red: Color = $new(0, "Red")
 ```
 
-### Reference
+## Reference
 
 For more information, see [Issue #1970](https://github.com/lampepfl/dotty/issues/1970) and
 [PR #4003](https://github.com/lampepfl/dotty/pull/4003).

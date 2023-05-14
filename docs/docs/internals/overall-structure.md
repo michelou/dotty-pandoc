@@ -97,7 +97,8 @@ phases. The current list of phases is specified in class [Compiler] as follows:
 
   /** Phases dealing with the frontend up to trees ready for TASTY pickling */
   protected def frontendPhases: List[List[Phase]] =
-    List(new FrontEnd) ::           // Compiler frontend: scanner, parser, namer, typer
+    List(new Parser) ::             // scanner, parser
+    List(new TyperPhase) ::         // namer, typer
     List(new YCheckPositions) ::    // YCheck positions
     List(new sbt.ExtractDependencies) :: // Sends information on classes' dependencies to sbt via callbacks
     List(new semanticdb.ExtractSemanticDB) :: // Extract info into .semanticdb files
@@ -232,10 +233,10 @@ Phases fall into four categories:
 * Code generators: These map the transformed trees to Java classfiles or
   .sjsir files.
 
-[dotty.tools]: https://github.com/lampepfl/dotty/tree/master/compiler/src/dotty/tools
-[dotc]: https://github.com/lampepfl/dotty/tree/master/compiler/src/dotty/tools/dotc
-[Main]: https://github.com/lampepfl/dotty/blob/master/compiler/src/dotty/tools/dotc/Main.scala
-[Driver]: https://github.com/lampepfl/dotty/blob/master/compiler/src/dotty/tools/dotc/Driver.scala
-[Compiler]: https://github.com/lampepfl/dotty/blob/master/compiler/src/dotty/tools/dotc/Compiler.scala
-[Run]: https://github.com/lampepfl/dotty/blob/master/compiler/src/dotty/tools/dotc/Run.scala
-[Context]: https://github.com/lampepfl/dotty/blob/master/compiler/src/dotty/tools/dotc/core/Contexts.scala
+[dotty.tools]: https://github.com/lampepfl/dotty/tree/main/compiler/src/dotty/tools
+[dotc]: https://github.com/lampepfl/dotty/tree/main/compiler/src/dotty/tools/dotc
+[Main]: https://github.com/lampepfl/dotty/blob/main/compiler/src/dotty/tools/dotc/Main.scala
+[Driver]: https://github.com/lampepfl/dotty/blob/main/compiler/src/dotty/tools/dotc/Driver.scala
+[Compiler]: https://github.com/lampepfl/dotty/blob/main/compiler/src/dotty/tools/dotc/Compiler.scala
+[Run]: https://github.com/lampepfl/dotty/blob/main/compiler/src/dotty/tools/dotc/Run.scala
+[Context]: https://github.com/lampepfl/dotty/blob/main/compiler/src/dotty/tools/dotc/core/Contexts.scala

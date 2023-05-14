@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: Inline
-movedTo: https://docs.scala-lang.org/scala3/reference/metaprogramming/inline.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/metaprogramming/inline.html
 ---
 
 ## Inline Definitions
@@ -89,6 +89,17 @@ Note that the by-value parameter `msg` is evaluated only once, per the usual Sca
 semantics, by binding the value and reusing the `msg` through the body of
 `factorial`. Also, note the special handling of the assignment to the private var
 `indent`. It is achieved by generating a setter method `def inline$indent_=` and calling it instead.
+
+Inline methods always have to be fully applied. For instance, a call to
+```scala
+Logger.log[String]("some op", indentSetting)
+```
+would be ill-formed and the compiler would complain that arguments are missing.
+However, it is possible to pass wildcard arguments instead. For instance,
+```scala
+Logger.log[String]("some op", indentSetting)(_)
+```
+would typecheck.
 
 ### Recursive Inline Methods
 
@@ -213,7 +224,7 @@ If a `inline` modifier is given for parameters, corresponding arguments must be
 pure expressions of constant type.
 -->
 
-#### The definition of constant expression
+### The definition of constant expression
 
 Right-hand sides of inline values and of arguments for inline parameters must be
 constant expressions in the sense defined by the [SLS §6.24](https://www.scala-lang.org/files/archive/spec/2.13/06-expressions.html#constant-expressions),
@@ -333,10 +344,10 @@ In a transparent inline, an `inline if` will force the inlining of any inline de
 ## Inline Matches
 
 A `match` expression in the body of an `inline` method definition may be
-prefixed by the `inline` modifier. If there is enough static information to
-unambiguously take a branch, the expression is reduced to that branch and the
-type of the result is taken. If not, a compile-time error is raised that
-reports that the match cannot be reduced.
+prefixed by the `inline` modifier. If there is enough type information
+at compile time to select a branch, the expression is reduced to that branch and the
+type of the expression is the type of the right-hand side of that result.
+If not, a compile-time error is raised that reports that the match cannot be reduced.
 
 The example below defines an inline method with a
 single inline match expression that picks a case based on its static type:
@@ -352,8 +363,9 @@ g("test") // Has type (String, String)
 ```
 
 The scrutinee `x` is examined statically and the inline match is reduced
-accordingly returning the corresponding value (with the type specialized because `g` is declared `transparent`). This example performs a simple type test over the
-scrutinee. The type can have a richer structure like the simple ADT below.
+accordingly returning the corresponding value (with the type specialized because `g` is declared `transparent`).
+This example performs a simple type test over the scrutinee.
+The type can have a richer structure like the simple ADT below.
 `toInt` matches the structure of a number in [Church-encoding](https://en.wikipedia.org/wiki/Church_encoding)
 and _computes_ the corresponding integer.
 
@@ -373,6 +385,6 @@ val intTwo: 2 = natTwo
 
 `natTwo` is inferred to have the singleton type 2.
 
-### Reference
+## Reference
 
 For more information about the semantics of `inline`, see the [Scala 2020: Semantics-preserving inlining for metaprogramming](https://dl.acm.org/doi/10.1145/3426426.3428486) paper.

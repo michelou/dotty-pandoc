@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "The Meta-theory of Symmetric Metaprogramming"
-movedTo: https://docs.scala-lang.org/scala3/reference/metaprogramming/simple-smp.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/metaprogramming/simple-smp.html
 ---
 
 This note presents a simplified variant of
@@ -23,7 +23,7 @@ replace evaluation contexts with contextual typing rules. While this
 is more verbose, it makes it easier to set up the meta theory.
 
 ## Syntax
-```
+```ebnf
 Terms         t  ::=  x                 variable
                       (x: T) => t       lambda
                       t t               application

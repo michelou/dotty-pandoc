@@ -1,12 +1,12 @@
 ---
 layout: doc-page
 title: "Context Functions - More Details"
-movedTo: https://docs.scala-lang.org/scala3/reference/contextual/context-functions-spec.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/contextual/context-functions-spec.html
 ---
 
 ## Syntax
 
-```
+```ebnf
 Type              ::=  ...
                     |  FunArgTypes ‘?=>’ Type
 Expr              ::=  ...
@@ -74,6 +74,6 @@ See the section on Expressiveness from [Simplicitly: foundations and
 applications of implicit function
 types](https://dl.acm.org/citation.cfm?id=3158130).
 
-### Type Checking
+## Type Checking
 
 After desugaring no additional typing rules are required for context function types.

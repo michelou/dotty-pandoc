@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: "Universal Apply Methods"
-movedTo: https://docs.scala-lang.org/scala3/reference/other-new-features/creator-applications.html
+nightlyOf: https://docs.scala-lang.org/scala3/reference/other-new-features/creator-applications.html
 ---
 
 Scala case classes generate apply methods, so that values of case classes can be created using simple
@@ -50,7 +50,7 @@ Constructor proxies are also not allowed to shadow normal definitions. That is,
 if an identifier resolves to a constructor proxy, and the same identifier is also
 defined or imported in some other scope, an ambiguity is reported.
 
-### Motivation
+## Motivation
 
 Leaving out `new` hides an implementation detail and makes code more pleasant to read. Even though
 it requires a new rule, it will likely increase the perceived regularity of the language, since case
