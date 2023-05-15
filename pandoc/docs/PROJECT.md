@@ -88,7 +88,7 @@ The `pandoc/` directory is organized as follows:
 <tr>
 </table>
 
-## <span id="footnotes">Footnotes</span>
+## <span id="footnotes">Footnotes</span> [**&#x25B4;**](#top)
 
 <span id="footnote_01">[1]</span> ***Pandoc filters*** [↩](#anchor_01)
 
@@ -110,7 +110,7 @@ File <a href="../data/templates/template.tex"><code>data/templates/template.tex<
 
 ***
 
-*[mics](https://github.com/michelou/)/January 2022* [**&#9650;**](#top "Back to top")
+*[mics](https://github.com/michelou/)/May 2023* [**&#9650;**](#top "Back to top")
 <span id="bottom">&nbsp;</span>
 
 [github_dotty]: https://github.com/lampepfl/dotty/#dotty

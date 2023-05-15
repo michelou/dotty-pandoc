@@ -272,11 +272,6 @@ abstract: |
 ../out/pandoc/src_managed/reference/other-new-features/indentation.md
 ```
 
-## Fewer Braces [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/other-new-features/indentationhtml) {#indentation}
-```{.include shift-heading-level-by=1}
-../out/pandoc/src_managed/reference/other-new-features/indentation.md
-```
-
 ## Safe Initialization [![](../out/pandoc/images/external.png){width=64px}&nbsp;](https://docs.scala-lang.org/scala3/reference/other-new-features/safe-initialization.html) {#safe-initialization}
 ```{.include shift-heading-level-by=1}
 ../out/pandoc/src_managed/reference/other-new-features/safe-initialization.md

@@ -9,13 +9,13 @@ This section presents examples in a Unix-like environment, e.g. [MSYS2] or [Ubun
 
 > **:mag_right:** For the sake of simplicity we assume that the following variables are defined in the execution environment :
 > <pre style="max-width:585px;">
-> <b>export</b> <b style="color:darkred;">PANDOC_HOME</b>=/opt/pandoc    (<i>symlink</i> pandoc <b>-></b> pandoc-2.16.2)
+> <b>export</b> <b style="color:darkred;">PANDOC_HOME</b>=/opt/pandoc    (<i>symlink</i> pandoc <b>-></b> pandoc-3.1.2)
 > <b>export</b> <b style="color:darkred;">TEXLIVE_HOME</b>=/opt/texlive/2021
 > </pre>
 > or in a <a href="https://www.msys2.org/">MSYS2</a> environment :
 > <pre style="max-width:585px;">
-> $ <b>export</b> <b style="color:darkred;">GIT_HOME</b>=/c/opt/Git-2.34.1/
-> $ <b>export</b> <b style="color:darkred;">PANDOC_HOME</b>=/c/opt/pandoc-2.16.2/
+> $ <b>export</b> <b style="color:darkred;">GIT_HOME</b>=/c/opt/Git-2.40.1/
+> $ <b>export</b> <b style="color:darkred;">PANDOC_HOME</b>=/c/opt/pandoc-3.1.2/
 > $ <b>export</b> <b style="color:darkred;">TEXLIVE_HOME</b>=/c/opt/texlive/2021/
 > </pre>
 
@@ -45,14 +45,14 @@ images  scala3_reference.pdf  src_managed
 
 > **:mag_right:** The preprocessing step converts cross-reference between [Markdown] documents into [named anchors][named_anchor]. The transformed files are stored into the output directory `../out/pandoc/src_managed/` and are then passed to [`pandoc`][pandoc_cmd].
 
-### <span id="windows">Windows Command Prompt</span>  <sup style="font-size:60%;">[**&#9650;**](#top "Back to top")</sup>
+### <span id="windows">Windows Command Prompt</span> [**&#x25B4;**](#top)
 
 This section presents examples in a MS Windows environment, e.g. [MS Windows 10 Pro][win_10_pro].
 
 > **:mag_right:** For the sake of simplicity we assume that the following environment variables are defined :
 > <pre style="max-width:585px;">
-> <b>set</b> <b style="color:darkred;">GIT_HOME</b>=C:\opt\Git-2.34.1
-> <b>set</b> <b style="color:darkred;">PANDOC_HOME</b>=C:\opt\pandoc-2.16.2
+> <b>set</b> <b style="color:darkred;">GIT_HOME</b>=C:\opt\Git-2.40.1
+> <b>set</b> <b style="color:darkred;">PANDOC_HOME</b>=C:\opt\pandoc-3.1.2
 > <b>set</b> <b style="color:darkred;">TEXLIVE_HOME</b>=C:\opt\texlive\2021
 > </pre>
 
@@ -78,7 +78,7 @@ We can specify option `-project:internals` to produce the output file `scala3_in
 <b>pandoc&gt; <a href="../build.bat">build</a> -timer -debug -project:internals clean compile</b>
 [build] Options    : _TIMER=1 _VERBOSE=0
 [build] Subcommands: _CLEAN=1 _COMPILE=1 _RUN=0
-[build] Variables  : <b style="color:darkred;">PANDOC_HOME</b>=c:\opt\pandoc-2.16.2
+[build] Variables  : <b style="color:darkred;">PANDOC_HOME</b>=c:\opt\pandoc-3.1.2
 [build] Variables  : <b style="color:darkred;">TEXLIVE_HOME</b>=c:\opt\texlive\2021
 [build] Variables  : _PROJECT_NAME=internals
 [build] rmdir /s /q "W:\scala3-pandoc\out\pandoc"
@@ -95,7 +95,7 @@ drwxr-xr-x 1  197121      0 Jan 30 19:29 src_managed
 
 ***
 
-*[mics](https://github.com/michelou/)/January 2022* [**&#9650;**](#top "Back to top")
+*[mics](https://github.com/michelou/)/May 2023* [**&#9650;**](#top "Back to top")
 <span id="bottom">&nbsp;</span>
 
 [markdown]: https://commonmark.org/

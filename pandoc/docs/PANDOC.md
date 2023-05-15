@@ -4,8 +4,8 @@
 The [Pandoc] software is free and available on Linux, MacOS and MS Windows.
 
 The setup of [Pandoc] in the different environments is straightforward :
-- *MS Windows*: we download archive [`pandoc-2.16.<X>-windows-x86_64.zip`][pandoc_downloads] and extract its contents into directory `C:\opt\pandoc-2.16.<X>`.
-- *Ubuntu* : we download archive [`pandoc-2.16.<X>-linux-amd64.tar.gz`][pandoc_downloads], extract its contents into directory `/opt/pandoc-2.16.<X>/` and create a symbolic link `/opt/pandoc -> /opt/pandoc-2.16.<X>`.
+- *MS Windows*: we download archive [`pandoc-3.1.<X>-windows-x86_64.zip`][pandoc_downloads] and extract its contents into directory `C:\opt\pandoc-3.1.<X>`.
+- *Ubuntu* : we download archive [`pandoc-3.1.<X>-linux-amd64.tar.gz`][pandoc_downloads], extract its contents into directory `/opt/pandoc-3.1.<X>/` and create a symbolic link `/opt/pandoc -> /opt/pandoc-3.1.<X>`.
 - *Docker* : we use [`pandoc/ubuntu-latex`][docker_pandoc], a Ubuntu based image which bundles [TeX Live][tex_live] and [Pandoc] and is available from the [Docker Hub][docker_hub].
   > See document [`DOCKER.md`](./DOCKER.md) for further information, e.g. `Dockerfile` usage.
 
@@ -43,7 +43,7 @@ The [`md2pdf`](../md2pdf) script (resp. [`md2pdf.bat`](../md2pdf.bat)) executes 
 </tr>
 </table>
 
-## <span id="footnotes">Footnotes</span>
+## <span id="footnotes">Footnotes</span> [**&#x25B4;**](#top)
 
 <span id="footnote_01">[1]</span> ***Pandoc options*** [↩](#anchor_01)
 
@@ -59,7 +59,7 @@ In this project we use either <a href="http://www.luatex.org/"><code>lualatex</c
 
 ***
 
-*[mics](https://github.com/michelou/)/January 2022* [**&#9650;**](#top "Back to top")
+*[mics](https://github.com/michelou/)/May 2023* [**&#9650;**](#top "Back to top")
 <span id="bottom">&nbsp;</span>
 
 [docker_entrypoint]: https://docs.docker.com/engine/reference/builder/#entrypoint "ENTRYPOINT instruction"
