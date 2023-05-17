@@ -53,15 +53,15 @@ getSubtitle() {
 PROG_HOME="$(getHome)"
 
 OS="$(getOS)"
-[[ $OS == "Unknown" ]] && { echo "Unsuppored OS" 1>&2; exit 1; }
+[[ $OS == "Unknown" ]] && { echo "Unsupported OS" 1>&2; exit 1; }
 [[ $OS == "Win" ]] && EXT=".exe" || EXT=""
 
 PANDOC=pandoc$EXT
 PANDOC_CMD="$(command -v $PANDOC)"
 if ! [[ -x "$PANDOC_CMD" ]]; then
     case $OS in
-        Win) PANDOC_CMD=$PANDOC_HOME/$PANDOC ;;
-        *)   PANDOC_CMD=$PANDOC_HOME/bin/$PANDOC
+        Win) PANDOC_CMD="$PANDOC_HOME/$PANDOC" ;;
+        *)   PANDOC_CMD="$PANDOC_HOME/bin/$PANDOC"
     esac
     [[ -x "$PANDOC_CMD" ]] || { echo "$PANDOC executable not found" 1>&2; exit 1; }
 fi
@@ -80,11 +80,11 @@ DATA_DIR="$PROG_HOME/data"
 IMAGES_DIR="$DATA_DIR/images"
 TARGET_DIR="$(dirname "$PROG_HOME")/out/pandoc"
 
-DEBUG=0
+DEBUG=false
 
 if [[ $# -eq 0 ]]; then
     PROJECT_NAME=reference
-	GIT_HASH=
+    GIT_HASH=
 else
     case $1 in
     internals) PROJECT_NAME=internals ;;
@@ -92,7 +92,7 @@ else
     usage)     PROJECT_NAME=usage ;;
     *)         echo "Unknown option \"$1\"" 1>&2; exit 1;
     esac
-	GIT_HASH="$2"
+    GIT_HASH="$2"
 fi
 [[ -d "$SOURCE_DIR/$PROJECT_NAME" ]] || { echo "directory \"$PROJECT_NAME/\" not found" 1>&2; exit 1; }
 
@@ -167,7 +167,7 @@ for f in $MD_FILES; do
     ## Markdown file contains image urls
     #if [[ "$OUT_FILE" =~ -nulls\.md$ ]]; then
     if [[ "$OUT_FILE" == *-nulls\.md* ]]; then
-        TMP_FILE=$OUT_FILE.tmp
+        TMP_FILE="$OUT_FILE.tmp"
         cp "$OUT_FILE" "$TMP_FILE"
         $DEBUG && echo "Update file \"${OUT_FILE/$PROG_HOME\//}\"" 1>&2
         ## e.g. ![](../../../images/image.png "Image")
@@ -176,12 +176,7 @@ for f in $MD_FILES; do
 done
 
 $DEBUG && echo "$PANDOC_CMD $PANDOC_OPTS $INPUT_FILE" 1>&2
-if [[ $OS == "Win" ]]; then
-    ## direct call to Pandoc executable fails in Cygwin/MinGw
-    eval "$PANDOC_CMD $PANDOC_OPTS $INPUT_FILE"
-else
-    eval "$PANDOC_CMD $PANDOC_OPTS $INPUT_FILE"
-fi
+eval "$PANDOC_CMD $PANDOC_OPTS $INPUT_FILE"
 [[ $? -eq 0 ]] || exit 1
 
 exit 0
